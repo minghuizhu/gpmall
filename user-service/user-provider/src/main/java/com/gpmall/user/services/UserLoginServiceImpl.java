@@ -64,7 +64,7 @@ public class UserLoginServiceImpl implements IUserLoginService {
                 response.setMsg(SysRetCodeConstants.USERORPASSWORD_ERRROR.getMessage());
                 return response;
             }
-            Map<String,Object> map=new HashMap<>();
+            Map<String,Object> map=new HashMap<>(16);
             map.put("uid",member.get(0).getId());
 
             String token=JwtTokenUtils.builder().msg(JSON.toJSON(map).toString()).build().creatJwtToken();

@@ -62,8 +62,9 @@ public enum ShoppingRetCode {
 
     public static String getMessage(String code) {
         for (ShoppingRetCode s : ShoppingRetCode.values()) {
-            if (null == code)
+            if (null == code) {
                 break;
+            }
             if (s.code.equals(code)) {
                 return s.message;
             }

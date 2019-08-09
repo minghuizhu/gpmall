@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 腾讯课堂搜索【咕泡学院】
@@ -32,4 +33,29 @@ public class PanelDto implements Serializable {
     private String remark;
 
     private List<PanelContentItemDto> panelContentItems;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        PanelDto panelDto = (PanelDto) o;
+        return Objects.equals(id, panelDto.id) &&
+                Objects.equals(name, panelDto.name) &&
+                Objects.equals(type, panelDto.type) &&
+                Objects.equals(sortOrder, panelDto.sortOrder) &&
+                Objects.equals(position, panelDto.position) &&
+                Objects.equals(limitNum, panelDto.limitNum) &&
+                Objects.equals(status, panelDto.status) &&
+                Objects.equals(remark, panelDto.remark) &&
+                Objects.equals(panelContentItems, panelDto.panelContentItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, sortOrder, position, limitNum, status, remark, panelContentItems);
+    }
 }

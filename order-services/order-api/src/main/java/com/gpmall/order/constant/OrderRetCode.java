@@ -66,8 +66,9 @@ public enum OrderRetCode {
 
     public static String getMessage(String code) {
         for (OrderRetCode s : OrderRetCode.values()) {
-            if (null == code)
+            if (null == code) {
                 break;
+            }
             if (s.code.equals(code)) {
                 return s.message;
             }

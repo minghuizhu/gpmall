@@ -81,6 +81,7 @@ public class BaseBusinessException extends RuntimeException{
      *
      * @return property value of message
      */
+    @Override
     public String getMessage() {
         return message;
     }

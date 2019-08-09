@@ -14,7 +14,7 @@ import lombok.Data;
  * create-date: 2019/7/30-上午10:02
  */
 @Data
-public class OrderListRequest extends AbstractRequest{
+public class OrderListRequest extends AbstractRequest {
 
     private Long userId;
     private Integer page;
@@ -22,9 +22,11 @@ public class OrderListRequest extends AbstractRequest{
 
     @Override
     public void requestCheck() {
-        if(page<0) page=1;
-        if(userId==null){
-            throw new ValidateException(OrderRetCode.REQUISITE_PARAMETER_NOT_EXIST.getCode(),OrderRetCode.REQUISITE_PARAMETER_NOT_EXIST.getMessage());
+        if (page < 0) {
+            page = 1;
+        }
+        if (userId == null) {
+            throw new ValidateException(OrderRetCode.REQUISITE_PARAMETER_NOT_EXIST.getCode(), OrderRetCode.REQUISITE_PARAMETER_NOT_EXIST.getMessage());
 
         }
     }

@@ -53,7 +53,7 @@ public class AlipayNotify {
         //String sWord = "responseTxt=" + responseTxt + "\n isSign=" + isSign + "\n 返回回来的参数：" + AlipayCore.createLinkString(params);
 	    //AlipayCore.logResult(sWord);
 
-        if (isSign && responseTxt.equals("true")) {
+        if (isSign && "true".equals(responseTxt)) {
             return true;
         } else {
             return false;
@@ -73,7 +73,7 @@ public class AlipayNotify {
         String preSignStr = AlipayCore.createLinkString(sParaNew);
         //获得签名验证结果
         boolean isSign = false;
-        if(config.getSign_type().equals("MD5") ) {
+        if("MD5".equals(config.getSign_type())) {
         	isSign = MD5.verify(preSignStr, sign, config.getPrivate_key(),config.getInput_charset());
         }
         return isSign;
@@ -84,7 +84,7 @@ public class AlipayNotify {
     * @param notify_id 通知校验ID
     * @return 服务器ATN结果
     * 验证结果集：
-    * invalid命令参数不对 出现这个错误，请检测返回处理中partner和key是否为空 
+    * invalid命令参数不对 出现这个错误，请检测返回处理中partner和key是否为空
     * true 返回正确信息
     * false 请检查防火墙或者是服务器阻止端口问题以及验证时间是否超过一分钟
     */
@@ -102,7 +102,7 @@ public class AlipayNotify {
     * @param urlvalue 指定URL路径地址
     * @return 服务器ATN结果
     * 验证结果集：
-    * invalid命令参数不对 出现这个错误，请检测返回处理中partner和key是否为空 
+    * invalid命令参数不对 出现这个错误，请检测返回处理中partner和key是否为空
     * true 返回正确信息
     * false 请检查防火墙或者是服务器阻止端口问题以及验证时间是否超过一分钟
     */

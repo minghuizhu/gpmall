@@ -74,7 +74,7 @@ public class ProductServiceImpl implements IProductService {
             ItemDesc itemDesc=itemDescMapper.selectByPrimaryKey(request.getId().longValue());
             productDetailDto.setDetail(itemDesc.getItemDesc());
             if(StringUtils.isNotBlank(item.getImage())){
-                String images[]=item.getImage().split(",");
+                String[] images = item.getImage().split(",");
                 productDetailDto.setProductImageBig(images[0]);
                 productDetailDto.setProductImageSmall(Arrays.asList(images));
             }
@@ -98,10 +98,10 @@ public class ProductServiceImpl implements IProductService {
             PageHelper.startPage(request.getPage(),request.getSize());
             String orderCol="created";
             String orderDir="desc";
-            if(request.getSort().equals("1")){
+            if("1".equals(request.getSort())){
                 orderCol="price";
                 orderDir="asc";
-            }else if(request.getSort().equals("-1")){
+            }else if("-1".equals(request.getSort())){
                 orderCol="price";
                 orderDir="desc";
             }

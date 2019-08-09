@@ -76,8 +76,9 @@ public enum SysRetCodeConstants {
 
     public static String getMessage(String code) {
         for (SysRetCodeConstants s : SysRetCodeConstants.values()) {
-            if (null == code)
+            if (null == code) {
                 break;
+            }
             if (s.code.equals(code)) {
                 return s.message;
             }

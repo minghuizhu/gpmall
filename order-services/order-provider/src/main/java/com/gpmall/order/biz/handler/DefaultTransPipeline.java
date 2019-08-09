@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * create-date: 2019/8/2-下午10:37
  */
 @Slf4j
-public class DefaultTransPipeline implements TransPipeline{
+public class DefaultTransPipeline implements TransPipeline {
 
 
     private TransHandlerNode tail;
@@ -31,32 +31,14 @@ public class DefaultTransPipeline implements TransPipeline{
     @Override
     public void addFirst(TransHandler... handlers) {
         TransHandlerNode pre = head.getNext();
-        for (TransHandler handler : handlers) {
-            if(handler == null)  continue;
-            TransHandlerNode node = new TransHandlerNode();
-            node.setHandler(handler);
-            node.setNext(pre);
-
-            pre = node;
-        }
-
+        setNextToNode(pre,handlers);
         head.setNext(pre);
     }
 
     @Override
     public void addLast(TransHandler... handlers) {
         TransHandlerNode next = tail;
-        for (TransHandler handler : handlers) {
-            if(handler == null) {
-                continue;
-            }
-
-            TransHandlerNode node = new TransHandlerNode();
-            node.setHandler(handler);
-            next.setNext(node);
-            next = node;
-        }
-
+        setNextToNode(next,handlers);
         tail = next;
     }
 
@@ -69,14 +51,26 @@ public class DefaultTransPipeline implements TransPipeline{
             throw ex;
         }
     }
+    private void setNextToNode(TransHandlerNode handlerNode ,TransHandler... handlers){
+        for (TransHandler handler : handlers) {
+            if (handler == null) {
+                continue;
+            }
+            TransHandlerNode node = new TransHandlerNode();
+            node.setHandler(handler);
+            handlerNode.setNext(node);
+            handlerNode = node;
+        }
+    }
 
     @Override
     public void shutdown() {
         ;
     }
 
+    @Override
     public <T extends TransHandlerContext> T getContext() {
-        return (T)context;
+        return (T) context;
     }
 
     public void setContext(TransHandlerContext context) {

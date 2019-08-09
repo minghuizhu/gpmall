@@ -51,7 +51,7 @@ public class TokenIntercepter extends HandlerInterceptorAdapter {
         CheckAuthRequest checkAuthRequest=new CheckAuthRequest();
         checkAuthRequest.setToken(token);
         CheckAuthResponse checkAuthResponse=iUserLoginService.validToken(checkAuthRequest);
-        if(checkAuthResponse.getCode().equals("000000")){
+        if("000000".equals(checkAuthResponse.getCode())){
             request.setAttribute(USER_INFO_KEY,checkAuthResponse.getUserinfo()); //保存token解析后的信息后续要用
             return super.preHandle(request, response, handler);
         }

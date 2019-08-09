@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 /**
  * 腾讯课堂搜索【咕泡学院】
@@ -32,7 +31,7 @@ import java.util.concurrent.Future;
 public class GlobalIdGeneratorUtil {
 
 
-    private static final FastDateFormat seqDateFormat = FastDateFormat.getInstance("yyMMddHHmmssSSS");
+    private static final FastDateFormat SEQ_DATE_FORMAT = FastDateFormat.getInstance("yyMMddHHmmssSSS");
 
     @Autowired
     RedissonClient redissonClient;
@@ -89,7 +88,7 @@ public class GlobalIdGeneratorUtil {
     }
 
     private String generateSeq() {
-        String seqDate = seqDateFormat.format(System.currentTimeMillis());
+        String seqDate = SEQ_DATE_FORMAT.format(System.currentTimeMillis());
         String candidateSeq = new StringBuilder(17).append(seqDate).append(RandomStringUtils.randomNumeric(2)).toString();
         return candidateSeq;
     }

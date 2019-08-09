@@ -67,8 +67,9 @@ public class AESUtil {
      */
     public String decrypt () {
         //将16进制转为二进制
-        if (content.length() < 1)
+        if (content.length() < 1){
             return null;
+        }
         byte[] result = new byte[content.length()/2];
         for (int i = 0;i< content.length()/2; i++) {
             int high = Integer.parseInt(content.substring(i*2, i*2+1), 16);

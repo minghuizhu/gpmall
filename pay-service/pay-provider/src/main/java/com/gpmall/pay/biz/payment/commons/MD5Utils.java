@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5Utils {
 
     // 全局数组
-    private final static String[] strDigits = {"0", "1", "2", "3", "4", "5",
+    private final static String[] STR_DIGITS = {"0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     // 返回形式为数字跟字符串
@@ -19,7 +19,7 @@ public class MD5Utils {
         }
         int iD1 = iRet / 16;
         int iD2 = iRet % 16;
-        return strDigits[iD1] + strDigits[iD2];
+        return STR_DIGITS[iD1] + STR_DIGITS[iD2];
     }
 
     // 返回形式只为数字
@@ -58,7 +58,7 @@ public class MD5Utils {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.update(decript.getBytes("utf-8"));
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
             // Create Hex String
             StringBuffer hexString = new StringBuffer();
             // 字节数组转换为 十六进制 数
